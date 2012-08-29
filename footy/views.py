@@ -1,21 +1,29 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from footy.models import MatchStat
+from footy.models import MatchStat, Team
+from django.views.generic import DetailView
 
-def index(request):
-    stat_list = MatchStats.objects.all().order_by('-idate')[:5]
-    output = ', '.join("%s vs %s" % (s.awayteam, s.hometeam) for s in stat_list)
-    return HttpResponse(output)
 
-def index(request):
-    stat_list = FootyStats.objects.all().order_by('-idate')[:5]
-    return render_to_response('index.html', {'stat_list': stat_list})
+class MatchDetailView(DetailView):
+    model=MatchStat
+    context_object_name="match"
+    template_name='match_detail.html'
 
-def match_detail(request, match_id):
-    return HttpResponse("You're looking at match %s." % match_id)
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(MatchDetailView, self).get_context_data(**kwargs)
+        return context
 
-def results(request, poll_id):
-    return HttpResponse("You're looking at the results of poll %s." % poll_id)
+class TeamDetailView(DetailView):
+    model = Team
+    context_object_name = "team"
+    template_name = 'team_detail.html'
 
-def vote(request, poll_id):
-    return HttpResponse("You're voting on poll %s." % poll_id)
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(TeamDetailView, self).get_context_data(**kwargs)
+        #a.teammatchstat_set.exclude(match__fulltime_winner=a.team_id)
+        #a.teammatchstat_set.exclude(match__fulltime_winner=a.team_id).exclude(match__fulltime_winner=0)
+        #a.teammatchstat_set.filter(match__fulltime_winner=0) 
+        return context
+
