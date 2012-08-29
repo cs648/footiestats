@@ -30,6 +30,12 @@ class TeamMatchStat(models.Model):
     class Meta:
         db_table = u'footy_matches'
 
+    @property
+    def opponent(self):
+        tms = TeamMatchStat.objects.exclude(team_id=self.team_id).get(match_id=self.match_id)
+        return tms
+        #return tms.team
+
 
 class MatchStat(models.Model):
     class Meta:

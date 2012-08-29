@@ -25,28 +25,7 @@
           <h1>{{ team }}</h1>
 
           <section>
-          <h2>Statistics</h2>
-          <div>
-              <ul>
-                  <td>{{ match.home.team }} {{ match.result }} {{ match.away.team }} </td>
-                  <li>Best win this season: 
-                      <a href="{% url match_detail pk=best_win.match.match_id %}">
-                          {{ best_win.match.home.fulltime_goals }}-{{ best_win.match.away.fulltime_goals }} against {{ best_win.opponent.team }}
-                      </a>
-                  </li>
-                  <li>Worst loss this season: {{ worst_loss.match.home.fulltime_goals }}-{{ worst_loss.match.away.fulltime_goals }} against {{ worst_loss.opponent.team }}</li>
-                  <li>Number of games won: {{ won.count }}</li>
-                  <li>Number of games drawn: {{ drawn.count }}</li>
-                  <li>Number of games lost: {{ lost.count }}</li>
-                  <li>Average yellows: {{ average_yellows }}</li>
-                  <li>Worst yellows: <a href="{% url match_detail pk=worst_yellows.match.match_id %}">{{ worst_yellows.yellows }}</a></li>
-                  <li>Average reds: {{ average_reds }}</li>
-                  <li>Worst reds: <a href="{% url match_detail pk=worst_reds.match.match_id %}">{{ worst_reds.reds }}</a></li>
-              </ul>
-          </div>
-          </section>
-          <section>
-          <h2>Recent Matches</h2>
+          <h2>Matches</h2>
           <div class="team">
               <table class="table table-bordered">
                   <thead>
@@ -59,7 +38,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      {% for teammatchstat in recent %}
+                      {% for teammatchstat in team.teammatchstat_set.all %}
                       {% with teammatchstat.match as match %}
                       {% url match_detail pk=match.match_id as match_url %}
                       {% url team_detail pk=match.home.team_id as home_url %}
@@ -75,15 +54,28 @@
                       {% endwith %}
                       {% endfor %}
                   </tbody>
+                  <!--
+                  {#
+                  In [6]: a.teammatchstat_set.exclude(match__fulltime_winner=a.team_id)
+
+                  In [7]: a.teammatchstat_set.exclude(match__fulltime_winner=a.team_id).exclude(match__fulltime_winner=0)
+
+                  In [8]: a.teammatchstat_set.filter(match__fulltime_winner=0)
+                  #}
+                  -->
+
               </table>
           </div>
           </section>
       </div>
 
+
+
       <!-- Le javascript
       ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->
       <script src="/static/js/bootstrap.js"></script>
+
 
   </body>
 </html>

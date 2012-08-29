@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import DetailView, ListView
 from footy.models import MatchStat, Team
-from footy.views import MatchDetailView, TeamDetailView
+from footy.views import MatchDetailView, TeamDetailView, TeamMatchDetailView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     #url(r'^match/(?P<match_id>\d+)/$', 'footy.views.match_detail'),
     url(r'^match/(?P<pk>\d+)/$', MatchDetailView.as_view(), name='match_detail'),
     url(r'^team/(?P<pk>\d+)/$', TeamDetailView.as_view(), name='team_detail'),
+    url(r'^team/(?P<pk>\d+)/matches$', TeamMatchDetailView.as_view(), name='team_match_detail'),
     #url(r'^footy/(?P<poll_id>\d+)/vote/$', 'footy.views.vote'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
