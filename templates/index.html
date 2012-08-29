@@ -1,9 +1,34 @@
-{% if stat_list %}
-    <ul>
-    {% for stat in stat_list %}
-        <li><a href="/stats/{{ stat.matchid }}/">{{ stat.awayteam }} vs {{ stat.hometeam }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No stats are available.</p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ team }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+
+      <!-- Le styles -->
+      <link href="/static/css/bootstrap.css" rel="stylesheet">
+      <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+      <link href="/static/css/footy.css" rel="stylesheet">
+
+  </head>
+
+  <body class="preview" data-spy="scroll" data-target=".subnav" data-offset="50">
+
+      <div class="container">
+          <a href="/teams">Teams</a>
+      </div>
+
+      <!-- Le javascript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="/static/js/bootstrap.js"></script>
+
+  </body>
+</html>

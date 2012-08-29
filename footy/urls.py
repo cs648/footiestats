@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, TemplateView
 from footy.models import MatchStat, Team
 from footy.views import MatchDetailView, TeamDetailView, TeamMatchDetailView, TeamListView
 
@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     # Examples:
     #url(r'^$', 'footy.views.home', name='home'),
     # url(r'^footy/', include('footy.foo.urls')),
-    #url(r'^footy/$', 'footy.views.index'),
+    url(r'^$', TemplateView.as_view(template_name="index.html")),
     #url(r'^match/(?P<match_id>\d+)/$', 'footy.views.match_detail'),
     url(r'^match/(?P<pk>\d+)/$', MatchDetailView.as_view(), name='match_detail'),
     url(r'^team/(?P<pk>\d+)/$', TeamDetailView.as_view(), name='team_detail'),
