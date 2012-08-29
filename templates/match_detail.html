@@ -29,15 +29,15 @@
             <div class="match">
                 <div class="">
                     <div class="row">
-                        <span class="span2"><span class="stat">Season: {{ match.season.year }}</span></span>
-                        <span class="span2"><span class="stat">Division: {{ match.division }}</span></span>
-                        <span class="span3"><span class="stat">Held on: {{ match.match_date }}</span></span>
+                        <span class="stat">Season: {{ match.season.year }}</span>
+                        <span class="stat">Division: {{ match.division }}</span>
+                        <span class="stat">Held on: {{ match.match_date }}</span>
                         <!--<span class="span2"><span class="stat">Attended by {{ match.attendance }}</span></span>-->
-                        <span class="span3"><span class="stat">Refeered by: {{ match.referee }}</span></span>
+                        <span class="stat">Refeered by: {{ match.referee }}</span>
                     </div>
                     <div class="row">
-                        <span class="span2"><span class="stat">Winner: <a href="{% url team_detail pk=match.fulltime_winner.team_id %}">{{ match.fulltime_winner }}</a></span></span>
-                        <span class="span2"><span class="stat">Winning at half time: {{ match.halftime_winner }}</span></span>
+                        <span class="stat">Winner: <a href="{% url team_detail pk=match.fulltime_winner.team_id %}">{{ match.fulltime_winner }}</a></span>
+                        <span class="stat">Winning at half time: {{ match.halftime_winner }}</span>
                     </div>
                 </div>
                 <div class="row">
