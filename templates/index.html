@@ -1,0 +1,9 @@
+{% if stat_list %}
+    <ul>
+    {% for stat in stat_list %}
+        <li><a href="/stats/{{ stat.matchid }}/">{{ stat.awayteam }} vs {{ stat.hometeam }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No stats are available.</p>
+{% endif %}

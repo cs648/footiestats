@@ -1,0 +1,2 @@
+mysql> load data local infile 'E0-update.csv' into table footy_stats fields terminated by ',' enclosed by '"' lines terminated by '\n' (`iDiv`, `IDate`, `HomeTeam`, `AwayTeam`, `FTHG`, `FTAG`, `FTR`, `HTHG`, `HTAG`, `HTR`, `Referee`, `HS`, `IAS`, `HST`, `AST`,  `HF`, `AF`, `HC`, `AC`, `HY`, `AY`, `HR`, `AR`);
+
