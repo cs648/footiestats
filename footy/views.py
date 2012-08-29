@@ -1,9 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from footy.models import FootyStats
+from footy.models import MatchStat
 
 def index(request):
-    stat_list = FootyStats.objects.all().order_by('-idate')[:5]
+    stat_list = MatchStats.objects.all().order_by('-idate')[:5]
     output = ', '.join("%s vs %s" % (s.awayteam, s.hometeam) for s in stat_list)
     return HttpResponse(output)
 

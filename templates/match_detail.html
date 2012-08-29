@@ -1,92 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Bootswatch: Slate</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ match }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+        <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-    <!-- Le styles -->
-    <link href="/static/css/bootstrap.css" rel="stylesheet">
-    <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+        <!-- Le styles -->
+        <link href="/static/css/bootstrap.css" rel="stylesheet">
+        <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="/static/css/footy.css" rel="stylesheet">
 
-  </head>
+    </head>
 
-  <body class="preview" data-spy="scroll" data-target=".subnav" data-offset="50">
+    <body class="preview" data-spy="scroll" data-target=".subnav" data-offset="50">
 
+        <div class="container">
 
-  <!-- Navbar
-    ================================================== -->
- <div class="navbar navbar-fixed-top">
-   <div class="navbar-inner">
-     <div class="container">
-       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-       </a>
-       <a class="brand" href="../">Bootswatch</a>
-       <div class="nav-collapse" id="main-menu">
-
-       </div>
-     </div>
-   </div>
- </div>
-
-    <div class="container">
-
-
-<!-- Masthead
-================================================== -->
-<header class="jumbotron subhead" id="overview">
-  <div class="row">
-    <div class="span6">
-      <h1>Slate</h1>
-      <p class="lead">A preview of changes in this swatch.</p>
+            <section>
+            <h1>{{ match.versus }}</h1>
+            <h2>{{ match.match_info }}</h2>
+            <div class="match">
+                <div class="">
+                    <div class="row">
+                        <span class="span2"><span class="stat">Season: {{ match.season.year }}</span></span>
+                        <span class="span2"><span class="stat">Division: {{ match.division }}</span></span>
+                        <span class="span3"><span class="stat">Held on: {{ match.match_date }}</span></span>
+                        <!--<span class="span2"><span class="stat">Attended by {{ match.attendance }}</span></span>-->
+                        <span class="span3"><span class="stat">Refeered by: {{ match.referee }}</span></span>
+                    </div>
+                    <div class="row">
+                        <span class="span2"><span class="stat">Winner: <a href="{% url team_detail pk=match.fulltime_winner.team_id %}">{{ match.fulltime_winner }}</a></span></span>
+                        <span class="span2"><span class="stat">Winning at half time: {{ match.halftime_winner }}</span></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="show-grid">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Team</th>
+                                    <th>Status</th>
+                                    <th>Fulltime Goals</th>
+                                    <th>Halftime Goals</th>
+                                    <th>Shots</th>
+                                    <th>Shots on Target</th>
+                                    <th>Shots Hit Woodwork</th>
+                                    <th>Corners</th>
+                                    <th>Fouls</th>
+                                    <th>Offsides</th>
+                                    <th>Yellows</th>
+                                    <th>Reds</th>
+                                    <th>Bookings Points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for matchstat in match.teams %}
+                                {% url team_detail pk=matchstat.team.team_id as team_url %}
+                                <tr>
+                                    <td><a href="{{ team_url }}">{{ matchstat.team }}</a></td>
+                                    <td>{{ matchstat.status|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.fulltime_goals|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.halftime_goals|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.shots|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.shots_on_target|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.hit_woodwork|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.corners|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.fouls|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.offsides|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.yellows|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.reds|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.bookings_points|default_if_none:"Unavailable" }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="span6">
-      <div class="bsa well">
-          <div id="bsap_1277971" class="bsarocks bsap_c466df00a3cd5ee8568b5c4983b6bb19"></div>
-          <div class="clearfix"><a href="http://adpacks.com" id="bsap_aplink">via Ad Packs</a></div>
-      </div>
-    </div>
-  </div>
-  <div class="subnav">
-    <ul class="nav nav-pills">
-      <li><a href="#typography">Typography</a></li>
-      <li><a href="#navbar">Navbar</a></li>
-      <li><a href="#buttons">Buttons</a></li>
-      <li><a href="#forms">Forms</a></li>
-      <li><a href="#miscellaneous">Miscellaneous</a></li>
-    </ul>
-  </div>
-</header>
 
-
-Attended by {{ match.attendance }}<br />
-Division: {{ match.division }}<br />
-Winner: {{ match.fulltime_winner }}<br />
-{{ match.get_next_by_match_date }}<br />
-{{ match.get_previous_by_match_date }}<br />
-Winning at half time: {{ match.halftime_winner }}<br />
-Held on: {{ match.match_date }}<br />
-ID :{{ match.match_id }}<br />
-Refeered by: {{ match.referee }}<br />
-Season: {{ match.season }}<br />
-teams: {% for team in match.teams %} {{ team }} {% endfor %}
+    </section>
 
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/static/js/bootstrap.js"></script>
+    <ul class="pager">
+        <li><a href="{% url match_detail pk=match.get_previous_by_match_date.match_id %}">{{ match.get_previous_by_match_date }}</a></li>
+        <li><a href="{% url match_detail pk=match.get_next_by_match_date.match_id %}">{{ match.get_next_by_match_date }}</a></li>
+    </ul>
+</div>
 
 
-  </body>
+</body>
 </html>

@@ -30,6 +30,7 @@ class TeamMatchStat(models.Model):
     class Meta:
         db_table = u'footy_matches'
 
+
 class MatchStat(models.Model):
     class Meta:
         db_table = u'footy_stats'
@@ -42,6 +43,36 @@ class MatchStat(models.Model):
     attendance = models.IntegerField(null=True, blank=True)
     referee = models.CharField(max_length=45, null=True)
     def __unicode__(self):
+        return "%s (%s)" % (self.versus(), self.match_info())
+
+    def versus(self):
+        return "%s vs %s" % (self.home().team, self.away().team)
+
+    def match_info(self):
         return "Match %s on %s" % (self.match_id, self.match_date)
+
+    @property
     def teams(self):
-        return TeamMatchStat.objects.filter(match_id=self.match_id)
+        if getattr(self, "_teams", None) is None:
+            self._teams = TeamMatchStat.objects.filter(match_id=self.match_id)
+            self._teams[0] # force evaluation #is this necessary?
+        return self._teams
+
+    def home(self):
+        return self.teams.filter(status='H')[0]
+
+    def away(self):
+        return self.teams.filter(status='A')[0]
+
+    def result(self):
+        #winner = self.teams.filter(team_id=self.fulltime_winner)
+        #loser = self.teams.exclude(team_id=self.fulltime_winner)
+        if self.home().team == self.fulltime_winner:
+            return "beat"
+        elif self.away().team == self.fulltime_winner:
+            return "lost to"
+        else:
+            assert self.fulltime_winner.team_id == 0
+            return "drew with"
+
+
