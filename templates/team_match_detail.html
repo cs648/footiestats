@@ -2,48 +2,37 @@
 
 {% block title %}{{ team }} Matches{% endblock %}
 {% block content %}
-          <h1>{{ team }} Matches</h1>
+            <h1>{{ team }} Matches</h1>
 
-          <section>
-          <div class="team">
-              <table class="table table-bordered">
-                  <thead>
-                      <tr>
-                          <th>Match</th>
-                          <th>Date</th>
-                          <th>Home</th>
-                          <th>Away</th>
-                          <th>Result</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      {% for teammatchstat in team.teammatchstat_set.all %}
-                      {% with teammatchstat.match as match %}
-                      {% url match_detail pk=match.match_id as match_url %}
-                      {% url team_detail pk=match.home.team_id as home_url %}
-                      {% url team_detail pk=match.away.team_id as away_url %}
-
-                      <tr>
-                          <td><a href="{{ match_url }}">{{ match.versus }}</a></td>
-                          <td>{{ match.match_date }}</td>
-                          <td><a href="{{ home_url }}">{{ match.home.team }}</a></td>
-                          <td><a href="{{ away_url }}">{{ match.away.team }}</a></td>
-                          <td>{{ match.home.team }} {{ match.result }} {{ match.away.team }} ({{ match.home.fulltime_goals }}-{{ match.away.fulltime_goals }})</td>
-                      </tr>
-                      {% endwith %}
-                      {% endfor %}
-                  </tbody>
-                  <!--
-                  {#
-                  In [6]: a.teammatchstat_set.exclude(match__fulltime_winner=a.team_id)
-
-                  In [7]: a.teammatchstat_set.exclude(match__fulltime_winner=a.team_id).exclude(match__fulltime_winner=0)
-
-                  In [8]: a.teammatchstat_set.filter(match__fulltime_winner=0)
-                  #}
-                  -->
-
-              </table>
-          </div>
-          </section>
+            <section>
+            <div class="team">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Match</th>
+                            <th>Date</th>
+                            <th>Home</th>
+                            <th>Away</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for teammatchstat in team.teammatchstat_set.all %}
+                        {% with teammatchstat.match as match %}
+                        {% url match_detail pk=match.match_id as match_url %}
+                        {% url team_detail pk=match.home.team_id as home_url %}
+                        {% url team_detail pk=match.away.team_id as away_url %}
+                        <tr>
+                            <td><a href="{{ match_url }}">{{ match.versus }}</a></td>
+                            <td>{{ match.match_date }}</td>
+                            <td><a href="{{ home_url }}">{{ match.home.team }}</a></td>
+                            <td><a href="{{ away_url }}">{{ match.away.team }}</a></td>
+                            <td>{{ match.home.team }} {{ match.result }} {{ match.away.team }} ({{ match.home.fulltime_goals }}-{{ match.away.fulltime_goals }})</td>
+                        </tr>
+                        {% endwith %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </section>
 {% endblock %}
