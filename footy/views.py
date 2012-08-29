@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from footy.models import MatchStat, Team, TeamMatchStat
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 
 
 class MatchDetailView(DetailView):
@@ -49,4 +49,13 @@ class TeamDetailView(DetailView):
         context['worst_reds'] = games.order_by('reds').reverse()[0]
         return context
 
+class TeamListView(ListView):
+    queryset = Team.objects.all()
+    template_name = 'team_list.html'
+    context_object_name = "teams"
 
+    #def get_context_data(self, **kwargs):
+    #    # Call the base implementation first to get a context
+    #    context = super(TeamDetailView, self).get_context_data(**kwargs)
+    #    team = context['team']
+    #    return context
