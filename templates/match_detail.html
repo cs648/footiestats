@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block title %}{{ match }}{% endblock %}
 {% block content %}
+            <div class="page-header">
+                <h1>{{ match.versus }}</h1>
+                <h2>{{ match.match_info }}</h2>
+            </div>
             <section>
-            <h1>{{ match.versus }}</h1>
-            <h2>{{ match.match_info }}</h2>
             <div class="match">
                 <div class="">
                     <div class="row">
