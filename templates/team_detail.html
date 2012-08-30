@@ -2,6 +2,11 @@
 
 {% block title %}{{ team }}{% endblock %}
 {% block content %}
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a> <span class="divider">/</span></li>
+                <li><a href="/teams">Teams</a> <span class="divider">/</span></li>
+                <li class="active">{{ team }}</li>
+            </ul>
             <div class="page-header">
                 <!--<img src="/static/img/teams/{{ team.team_id }}-standard.png" height="140px" width="140px" class="img-circle pull-left clearfix" style="display: inline"/>-->
                 <h1>{{ team }}</h1>

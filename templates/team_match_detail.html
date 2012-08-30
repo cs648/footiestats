@@ -2,6 +2,12 @@
 
 {% block title %}{{ team }} Matches{% endblock %}
 {% block content %}
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a> <span class="divider">/</span></li>
+                <li><a href="/teams">Home</a> <span class="divider">/</span></li>
+                <li><a href="/team/{{ team.team_id }}">{{ team }}</a> <span class="divider">/</span></li>
+                <li class="active">Matches</li>
+            </ul>
             <div class="page-header">
                 <h1>{{ team }} Matches</h1>
             </div>
