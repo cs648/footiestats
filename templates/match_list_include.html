@@ -1,0 +1,39 @@
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Match</th>
+                            <th>Date</th>
+                            <th>Home</th>
+                            <th>Away</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for teammatchstat in matches %}
+                        {% with teammatchstat.match as match %}
+                        {% url match_detail pk=match.match_id as match_url %}
+                        {% url team_detail pk=match.home.team_id as home_url %}
+                        {% url team_detail pk=match.away.team_id as away_url %}
+
+                        <tr>
+                            <td>
+                                <img src="/static/img/teams/{{ match.home.team.team_id }}-small.png" style="display: inline" />
+                                <a href="{{ match_url }}">{{ match.versus }}</a>
+                                <img src="/static/img/teams/{{ match.away.team.team_id }}-small.png" style="display: inline" />
+                            </td>
+                            <td>{{ match.match_date }}</td>
+                            <td>
+                                <img src="/static/img/teams/{{ match.home.team.team_id }}-small.png" style="display: inline" />
+                                <a href="{{ home_url }}">{{ match.home.team }}</a>
+                            </td>
+                            <td>
+                                <img src="/static/img/teams/{{ match.away.team.team_id }}-small.png" style="display: inline" />
+                                <a href="{{ away_url }}">{{ match.away.team }}</a>
+                            </td>
+                            <td>{{ match.home.team }} {{ match.result }} {{ match.away.team }} ({{ match.home.fulltime_goals }}-{{ match.away.fulltime_goals }})</td>
+                        </tr>
+                        {% endwith %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+
