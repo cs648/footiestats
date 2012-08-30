@@ -61,7 +61,8 @@ class TeamListView(ListView):
     #    return context
 
 class MatchListView(ListView):
-    # XXX: wrong!
-    queryset = TeamMatchStat.objects.distinct()
+    # XXX: hack!
+    queryset = [s.teammatchstat_set.all()[0] for s in MatchStat.objects.all()]
     template_name = 'match_list.html'
     context_object_name = "matches"
+    paginate_by = 25
