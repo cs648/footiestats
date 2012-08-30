@@ -14,18 +14,18 @@ class MatchDetailView(DetailView):
         context = super(MatchDetailView, self).get_context_data(**kwargs)
         return context
 
-class TeamMatchDetailView(DetailView):
-    model = Team
-    context_object_name = "team"
+class TeamMatchDetailView(ListView):
+    context_object_name = "teams"
     template_name = 'team_match_detail.html'
+    paginate_by = 25
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
         context = super(TeamMatchDetailView, self).get_context_data(**kwargs)
-        #a.teammatchstat_set.exclude(match__fulltime_winner=a.team_id)
-        #a.teammatchstat_set.exclude(match__fulltime_winner=a.team_id).exclude(match__fulltime_winner=0)
-        #a.teammatchstat_set.filter(match__fulltime_winner=0) 
+        context['team'] = Team.objects.get(team_id=self.kwargs['pk'])
         return context
+
+    def get_queryset(self):
+        return TeamMatchStat.objects.filter(team_id=self.kwargs['pk'])
 
 class TeamDetailView(DetailView):
     model = Team
@@ -53,12 +53,6 @@ class TeamListView(ListView):
     queryset = Team.objects.all()
     template_name = 'team_list.html'
     context_object_name = "teams"
-
-    #def get_context_data(self, **kwargs):
-    #    # Call the base implementation first to get a context
-    #    context = super(TeamDetailView, self).get_context_data(**kwargs)
-    #    team = context['team']
-    #    return context
 
 class MatchListView(ListView):
     # XXX: hack!

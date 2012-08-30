@@ -19,9 +19,11 @@
 
             <section>
             <div class="team">
-                {% with matches=team.teammatchstat_set.all %}
+                {% with matches=teams %}
                 {% include "match_list_include.html" %}
                 {% endwith %}
             </div>
             </section>
+
+            {% include "paginator_include.html" %}
 {% endblock %}
