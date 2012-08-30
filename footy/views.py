@@ -59,3 +59,9 @@ class TeamListView(ListView):
     #    context = super(TeamDetailView, self).get_context_data(**kwargs)
     #    team = context['team']
     #    return context
+
+class MatchListView(ListView):
+    # XXX: wrong!
+    queryset = TeamMatchStat.objects.distinct()
+    template_name = 'match_list.html'
+    context_object_name = "matches"
