@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}{{ team }} Matches{% endblock %}
+{% block nav %}
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a href="/teams">Team list</a></li>
+                        <li><a href="/matches">Match list</a></li>
+{% endblock %}
 {% block content %}
             <ul class="breadcrumb">
                 <li><a href="/">Home</a> <span class="divider">/</span></li>
