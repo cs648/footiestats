@@ -1,0 +1,42 @@
+<record>
+	<!-- resource manager options -->
+
+	<!-- dont preload anything in this folder -->
+	<boolean id="preload" value="false"/>
+
+	<!-- turn off auto mapping -->
+	<boolean id="amap" value="false"/>
+
+	<!-- icon mappings -->
+	<!-- the following XML maps pictures inside this folder into other positions
+			 in the resource system, which allows this folder to be dropped into any
+			 place in the graphics folder and still have the game pick up the graphics
+			 files from the correct places
+	-->
+
+	<list id="maps">
+		<!-- TigerJoe -->
+
+		<record from="602" to="graphics/pictures/club/602/icon"/>
+		<record from="603" to="graphics/pictures/club/603/icon"/>
+                <record from="691" to="graphics/pictures/club/691/icon"/>
+		<record from="612" to="graphics/pictures/club/612/icon"/>
+                <record from="724" to="graphics/pictures/club/724/icon"/>
+		<record from="614" to="graphics/pictures/club/614/icon"/>
+		<record from="630" to="graphics/pictures/club/630/icon"/>
+		<record from="650" to="graphics/pictures/club/650/icon"/>
+		<record from="654" to="graphics/pictures/club/654/icon"/>
+		<record from="676" to="graphics/pictures/club/676/icon"/>
+		<record from="679" to="graphics/pictures/club/679/icon"/>
+		<record from="680" to="graphics/pictures/club/680/icon"/>
+		<record from="688" to="graphics/pictures/club/688/icon"/>
+		<record from="721" to="graphics/pictures/club/721/icon"/>
+		<record from="722" to="graphics/pictures/club/722/icon"/>
+		<record from="728" to="graphics/pictures/club/728/icon"/>
+		<record from="734" to="graphics/pictures/club/734/icon"/>
+		<record from="701" to="graphics/pictures/club/701/icon"/>
+		<record from="737" to="graphics/pictures/club/737/icon"/>
+                <record from="740" to="graphics/pictures/club/740/icon"/>
+		<record from="premierleague" to="graphics/pictures/comp/11/icon"/>
+	</list>
+</record>
