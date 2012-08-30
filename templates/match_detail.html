@@ -50,7 +50,7 @@
                                 {% url team_detail pk=matchstat.team.team_id as team_url %}
                                 <tr>
                                     <td><a href="{{ team_url }}">{{ matchstat.team }}</a></td>
-                                    <td>{{ matchstat.status|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.get_status_display|default_if_none:"Unavailable" }}</td>
                                     <td>{{ matchstat.fulltime_goals|default_if_none:"Unavailable" }}</td>
                                     <td>{{ matchstat.halftime_goals|default_if_none:"Unavailable" }}</td>
                                     <td>{{ matchstat.shots|default_if_none:"Unavailable" }}</td>
