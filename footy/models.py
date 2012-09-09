@@ -40,7 +40,7 @@ class TeamMatchStat(models.Model):
 class MatchStat(models.Model):
     class Meta:
         db_table = u'footy_stats'
-    match_id = models.IntegerField(primary_key=True)
+    match_id = models.AutoField(primary_key=True)
     season = models.DateField()
     division = models.CharField(max_length=15)
     match_date = models.DateField()
