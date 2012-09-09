@@ -1,6 +1,6 @@
 # Django settings for footy project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -12,9 +12,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'cs648',                      # Or path to database file if using sqlite3.
-        'USER': 'cs648',                      # Not used with sqlite3.
-        'PASSWORD': 'HzC1Y2pu',                  # Not used with sqlite3.
+        'NAME': 'cs648_footie',                      # Or path to database file if using sqlite3.
+        'USER': 'cs648_footie',                      # Not used with sqlite3.
+        'PASSWORD': 'ec2cb663',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -56,7 +56,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/cs648/public_html/footy/static/'
+STATIC_ROOT = '/home/cs648/webapps/footie_stats/footie_stats/footy/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -103,7 +103,7 @@ ROOT_URLCONF = 'footy.urls'
 WSGI_APPLICATION = 'footy.wsgi.application'
 
 TEMPLATE_DIRS = (
-    "/home/cs648/public_html/footy/templates",
+    "/home/cs648/webapps/footie_stats/footie_stats/templates",
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
