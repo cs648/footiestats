@@ -3,11 +3,50 @@
 {% block title %}Footie Stats{% endblock %}
 {% block content %}
 
+                <!--
                 <div class="page-header">
                     <h1>Footie Stats</h1>
                 </div>
-                <p>Welcome to Footie Stats. Check out:
-                <ul>
-                    <li><a href="/teams">Teams</a></li>
-                </ul>
+                -->
+                <div class="hero-unit">
+                    <h1>Welcome to Footie Stats!</h1>
+                    <p>
+                        Welcome to Footie Stats, a simple website providing stats for fans to look
+                        up quickly.
+                    </p>
+                    <p>Check out the team list or recent match links below, or take a look at a quick selection of random teams and matches:</p>
+                    <a href="/teams" class="btn btn-primary btn-large">Team List</a>
+                    <a href="/matches" class="btn btn-primary btn-large">Recent Matches</a>
+                </div>
+                <div class="row">
+                    <div class="span3">
+                        <h2>Random Teams</h2>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Team</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for team in random_teams %}
+                                {% url team_detail pk=team.team_id as team_url %}
+                                <tr>
+                                    <td><a href="{{ team_url }}">{{ team }}</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span9">
+                        <h2>Random Matches</h2>
+                        <div class="">
+                            {% with matches=random_matches %}
+                            {% include "match_list_include.html" %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+
 {% endblock %}

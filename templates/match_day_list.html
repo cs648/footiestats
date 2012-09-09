@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Matches{% endblock %}
+{% block nav %}
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/teams">Team list</a></li>
+                        <li class="active"><a href="/matches">Match list</a></li>
+{% endblock %}
+{% block content %}
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a><span class="divider">/</span></li>
+                <li><a href="/">Matches</a><span class="divider">/</span></li>
+                <li class="active"></li>
+            </ul>
+            <div class="section page-header">
+                <h1>Matches</h1>
+            </div>
+
+            <div class="section">
+                {% include "match_list_include.html" %}
+            </div>
+
+            {% include "paginator_include.html" %}
+
+{% endblock %}
