@@ -1,7 +1,7 @@
 from django.db import models
 
 class Team(models.Model):
-    team_id = models.IntegerField(primary_key=True)
+    team_id = models.AutoField(primary_key=True)
     team_name = models.CharField(max_length=75, unique=True)
     class Meta:
         db_table = u'footy_teams'
