@@ -22,9 +22,13 @@
             <div>
                 <ul>
                     <li>Best win this season:
+                        {% if best_win %}
                         <a href="{% url match_detail pk=best_win.match.match_id %}">
                             {{ best_win.match.home.fulltime_goals }}-{{ best_win.match.away.fulltime_goals }} against {{ best_win.opponent.team }}
                         </a>
+                        {% else %}
+                            No wins this season
+                        {% endif %}
                     </li>
                     <li>Worst loss this season: {{ worst_loss.match.home.fulltime_goals }}-{{ worst_loss.match.away.fulltime_goals }} against {{ worst_loss.opponent.team }}</li>
                     <li>Number of games won: {{ won.count }}</li>
