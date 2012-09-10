@@ -41,6 +41,7 @@ class TeamDetailView(DetailView):
         games = TeamMatchStat.objects.filter(team_id=self.kwargs['pk'])
         context['recent'] = games.order_by('match__match_date').reverse()[:5]
         games_this_season = games.filter(match__season=current_season)
+        context['position'] = team.divisioninfo_set.order_by('season').reverse()[0]
         context['won'] = won = games_this_season.filter(match__fulltime_winner=team.team_id)
         context['lost'] = lost = games_this_season.exclude(match__fulltime_winner=team.team_id).exclude(match__fulltime_winner=0)
         context['drawn'] = drawn = games_this_season.filter(match__fulltime_winner=0)

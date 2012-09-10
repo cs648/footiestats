@@ -1,5 +1,14 @@
 from django.db import models
 
+
+DIVISION_CHOICES = (
+    ('E0', 'Premier League'),
+    ('E1', 'Championship'),
+    ('E2', 'League One'),
+    ('E3', 'League Two'),
+    ('EC', 'Conference'),
+)
+
 class Team(models.Model):
     team_id = models.AutoField(primary_key=True)
     team_name = models.CharField(max_length=75, unique=True)
@@ -7,6 +16,13 @@ class Team(models.Model):
         db_table = u'footy_teams'
     def __unicode__(self):
         return self.team_name
+
+class DivisionInfo(models.Model):
+    team = models.ForeignKey(Team)
+    season = models.DateField()
+    division = models.ChoiceField(max_length=2, choices=DIVISION_CHOICES)
+    def __unicode__(self):
+        return "%s in %s for season %s" %(self.team, self.division, self.season)
 
 class TeamMatchStat(models.Model):
     match = models.ForeignKey('MatchStat')
@@ -42,7 +58,7 @@ class MatchStat(models.Model):
         db_table = u'footy_stats'
     match_id = models.AutoField(primary_key=True)
     season = models.DateField()
-    division = models.CharField(max_length=15)
+    division = models.CharField(max_length=2, choices=DIVISION_CHOICES)
     match_date = models.DateField()
     fulltime_winner = models.ForeignKey(Team, null=True, related_name="matchstat_ftw")
     halftime_winner = models.ForeignKey(Team, null=True, related_name="matchstat_htw")

@@ -33,8 +33,9 @@ urlpatterns = patterns('',
     ), name='match_month_list'),
     url(r'^matches/(?P<year>\d\d\d\d)$', YearArchiveView.as_view(
         model=MatchStat,
-        date_field='match_date',
+        date_field='season',
         template_name='match_day_list.html',
+        make_object_list=True,
     ), name='match_year_list'),
 
     # Uncomment the admin/doc line below to enable admin documentation:

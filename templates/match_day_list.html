@@ -17,7 +17,9 @@
             </div>
 
             <div class="section">
-                {% include "match_list_include_tms.html" %}
+                {% with matches=object_list %}
+                {% include "match_list_include_match.html" %}
+                {% endwith %}
             </div>
 
             {% include "paginator_include.html" %}
