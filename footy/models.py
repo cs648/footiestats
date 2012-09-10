@@ -20,7 +20,7 @@ class Team(models.Model):
 class DivisionInfo(models.Model):
     team = models.ForeignKey(Team)
     season = models.DateField()
-    division = models.ChoiceField(max_length=2, choices=DIVISION_CHOICES)
+    division = models.CharField(max_length=2, choices=DIVISION_CHOICES)
     def __unicode__(self):
         return "%s in %s for season %s" %(self.team, self.division, self.season)
 
