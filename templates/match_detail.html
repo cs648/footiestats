@@ -50,18 +50,18 @@
                                 {% url team_detail pk=matchstat.team.team_id as team_url %}
                                 <tr>
                                     <td><a href="{{ team_url }}">{{ matchstat.team }}</a></td>
-                                    <td>{{ matchstat.get_status_display|default_if_none:"Unavailable" }}</td>
-                                    <td>{{ matchstat.fulltime_goals|default_if_none:"Unavailable" }}</td>
-                                    <td>{{ matchstat.halftime_goals|default_if_none:"Unavailable" }}</td>
-                                    <td>{{ matchstat.shots|default_if_none:"Unavailable" }}</td>
-                                    <td>{{ matchstat.shots_on_target|default_if_none:"Unavailable" }}</td>
-                                    <td>{{ matchstat.hit_woodwork|default_if_none:"Unavailable" }}</td>
-                                    <td>{{ matchstat.corners|default_if_none:"Unavailable" }}</td>
-                                    <td>{{ matchstat.fouls|default_if_none:"Unavailable" }}</td>
-                                    <td>{{ matchstat.offsides|default_if_none:"Unavailable" }}</td>
-                                    <td>{{ matchstat.yellows|default_if_none:"Unavailable" }}</td>
-                                    <td>{{ matchstat.reds|default_if_none:"Unavailable" }}</td>
-                                    <td>{{ matchstat.bookings_points|default_if_none:"Unavailable" }}</td>
+                                    <td>{{ matchstat.get_status_display|default_if_none:"N/A" }}</td>
+                                    <td>{{ matchstat.fulltime_goals|default_if_none:"N/A" }}</td>
+                                    <td>{{ matchstat.halftime_goals|default_if_none:"N/A" }}</td>
+                                    <td>{{ matchstat.shots|default_if_none:"N/A" }}</td>
+                                    <td>{{ matchstat.shots_on_target|default_if_none:"N/A" }}</td>
+                                    <td>{{ matchstat.hit_woodwork|default_if_none:"N/A" }}</td>
+                                    <td>{{ matchstat.corners|default_if_none:"N/A" }}</td>
+                                    <td>{{ matchstat.fouls|default_if_none:"N/A" }}</td>
+                                    <td>{{ matchstat.offsides|default_if_none:"N/A" }}</td>
+                                    <td>{{ matchstat.yellows|default_if_none:"N/A" }}</td>
+                                    <td>{{ matchstat.reds|default_if_none:"N/A" }}</td>
+                                    <td>{{ matchstat.bookings_points|default_if_none:"N/A" }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
