@@ -56,7 +56,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/cs648/webapps/footie_stats/footie_stats/footy/static/'
+STATIC_ROOT = "/home/cs648/webapps/footie_stats_static"
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -64,9 +64,9 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/home/cs648/webapps/footie_stats/footie_stats/footy/static/',
 )
 
 # List of finder classes that know how to find static files in
@@ -135,6 +135,11 @@ LOGGING = {
         }
     },
     'handlers': {
+        'file':{
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/home/cs648/debug.log',
+        },
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
@@ -147,5 +152,17 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+        'footy': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+                'propagate': False,
+        }
+    }
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': 'unix:/home/cs648/webapps/footie_stats/memcached.sock',
     }
 }
