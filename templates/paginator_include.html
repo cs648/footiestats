@@ -4,12 +4,13 @@
         <li {% if not page_obj.has_previous %}class="disabled"{% endif %}>
             <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
         </li>
+        {% if paginator.num_pages < 20 %}
         {% for page_no in paginator.page_range %}
             <li {% ifequal page_obj.number page_no %}class="active"{% endifequal %}>
                 <a href="?page={{ page_no }}">{{ page_no }}</a>
             </li>
-
         {% endfor %}
+        {% endif %}
         <li {% if not page_obj.has_next %}class="disabled"{% endif %}>
             <a href="?page={{ page_obj.next_page_number }}">Next</a>
         </li>

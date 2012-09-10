@@ -45,7 +45,7 @@
             <h2><a href="{% url team_match_detail pk=team.team_id %}">Recent Matches</a></h2>
             <div class="team">
                 {% with matches=recent %}
-                {% include "match_list_include.html" %}
+                {% include "match_list_include_tms.html" %}
                 {% endwith %}
             </div>
             </section>
