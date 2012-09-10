@@ -30,14 +30,34 @@
                             No wins this season
                         {% endif %}
                     </li>
-                    <li>Worst loss this season: {{ worst_loss.match.home.fulltime_goals }}-{{ worst_loss.match.away.fulltime_goals }} against {{ worst_loss.opponent.team }}</li>
+                    <li>Worst loss this season:
+                        {% if worst_loss %}
+                        <a href="{% url match_detail pk=worst_loss.match.match_id %}">
+                            {{ worst_loss.match.home.fulltime_goals }}-{{ worst_loss.match.away.fulltime_goals }} against {{ worst_loss.opponent.team }}
+                        </a>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </li>
                     <li>Number of games won: {{ won.count }}</li>
                     <li>Number of games drawn: {{ drawn.count }}</li>
                     <li>Number of games lost: {{ lost.count }}</li>
-                    <li>Average yellows: {{ average_yellows }}</li>
-                    <li>Worst yellows: <a href="{% url match_detail pk=worst_yellows.match.match_id %}">{{ worst_yellows.yellows }}</a></li>
-                    <li>Average reds: {{ average_reds }}</li>
-                    <li>Worst reds: <a href="{% url match_detail pk=worst_reds.match.match_id %}">{{ worst_reds.reds }}</a></li>
+                    <li>Average yellows: {% if average_yellows %}{{ average_yellows }}{% else %}N/A{% endif %}</li>
+                    <li>Worst yellows:
+                        {% if worst_yellows %}
+                            <a href="{% url match_detail pk=worst_yellows.match.match_id %}">{{ worst_yellows.yellows }}</a>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </li>
+                    <li>Average reds: {% if average_reds %}{{ average_reds }}{% else %}N/A{% endif %}</li>
+                    <li>Worst reds:
+                        {% if worst_reds %}
+                            <a href="{% url match_detail pk=worst_reds.match.match_id %}">{{ worst_reds.reds }}</a>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </li>
                 </ul>
             </div>
             </section>

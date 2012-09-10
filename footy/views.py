@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from footy.models import MatchStat, Team, TeamMatchStat
+from footy.config import current_season
 from django.views.generic import DetailView, ListView, TemplateView
 from random import randint
 
@@ -37,23 +38,22 @@ class TeamDetailView(DetailView):
         # Call the base implementation first to get a context
         context = super(TeamDetailView, self).get_context_data(**kwargs)
         team = context['team']
+        games = TeamMatchStat.objects.filter(team_id=self.kwargs['pk'])
+        context['recent'] = games.order_by('match__match_date').reverse()[:5]
+        games_this_season = games.filter(match__season=current_season)
+        context['won'] = won = games_this_season.filter(match__fulltime_winner=team.team_id)
+        context['lost'] = lost = games_this_season.exclude(match__fulltime_winner=team.team_id).exclude(match__fulltime_winner=0)
+        context['drawn'] = drawn = games_this_season.filter(match__fulltime_winner=0)
         try:
-            context['game'] = games = TeamMatchStat.objects.filter(team_id=self.kwargs['pk'])
-            context['recent'] = games.order_by('match__match_date').reverse()[:5]
-            context['won'] = won = games.filter(match__fulltime_winner=team.team_id)
-            context['lost'] = lost = games.exclude(match__fulltime_winner=team.team_id).exclude(match__fulltime_winner=0)
-            context['drawn'] = drawn = games.filter(match__fulltime_winner=0)
-            try:
-                context['best_win'] = won.order_by('fulltime_goals').reverse()[0]
-            except IndexError:
-                context['best_win'] = None
-            #context['worst_loss'] = lost.order_by().reverse()[0]
-            context['average_yellows'] = 0
-            context['worst_yellows'] = games.order_by('yellows').reverse()[0]
-            context['average_reds'] = 0
-            context['worst_reds'] = games.order_by('reds').reverse()[0]
-        except Exception:
-            pass
+            context['best_win'] = won.order_by('fulltime_goals').reverse()[0]
+        except IndexError:
+            context['best_win'] = None
+        #context['worst_loss'] = lost.order_by().reverse()[0]
+        context['worst_loss'] = None
+        context['average_yellows'] = None
+        context['worst_yellows'] = games_this_season.order_by('yellows').reverse()[0]
+        context['average_reds'] = None
+        context['worst_reds'] = games_this_season.order_by('reds').reverse()[0]
         return context
 
 class TeamListView(ListView):
