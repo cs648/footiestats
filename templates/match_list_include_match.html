@@ -16,17 +16,17 @@
 
                         <tr>
                             <td>
-                                <img src="/static/img/teams/{{ match.home.team.team_id }}-small.png" style="display: inline" />
+                                <!-- <img src="/static/img/teams/{{ match.home.team.team_id }}-small.png" style="display: inline" /> -->
                                 <a href="{{ match_url }}">{{ match.versus }}</a>
-                                <img src="/static/img/teams/{{ match.away.team.team_id }}-small.png" style="display: inline" />
+                                <!-- <img src="/static/img/teams/{{ match.away.team.team_id }}-small.png" style="display: inline" /> -->
                             </td>
                             <td>{{ match.match_date }}</td>
                             <td>
-                                <img src="/static/img/teams/{{ match.home.team.team_id }}-small.png" style="display: inline" />
+                                <!-- <img src="/static/img/teams/{{ match.home.team.team_id }}-small.png" style="display: inline" /> -->
                                 <a href="{{ home_url }}">{{ match.home.team }}</a>
                             </td>
                             <td>
-                                <img src="/static/img/teams/{{ match.away.team.team_id }}-small.png" style="display: inline" />
+                                <!-- <img src="/static/img/teams/{{ match.away.team.team_id }}-small.png" style="display: inline" /> -->
                                 <a href="{{ away_url }}">{{ match.away.team }}</a>
                             </td>
                             <td>{{ match.home.team }} {{ match.result }} {{ match.away.team }} ({{ match.home.fulltime_goals }}-{{ match.away.fulltime_goals }})</td>
