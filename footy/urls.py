@@ -1,9 +1,11 @@
+from django.contrib.sitemaps import views as sitemaps_views
 from django.conf.urls import patterns, include, url
 from django.views.generic import DetailView, ListView, TemplateView
 from footy.models import MatchStat, Team
 from footy.views import MatchDetailView, TeamDetailView, TeamMatchListView, TeamListView, \
     MatchListView, IndexView, LeagueIndexView, LeagueListView
 from django.views.generic.dates import DayArchiveView, MonthArchiveView, YearArchiveView
+from footy.sitemap import sitemaps
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -44,4 +46,13 @@ urlpatterns = patterns('',
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^sitemap.xml$',
+        #cache_page(86400)(sitemaps_views.index),
+        (sitemaps_views.index),
+        {'sitemaps': sitemaps, 'sitemap_url_name': 'sitemaps'}),
+    url(r'^sitemap-(?P<section>.+)\.xml$',
+        #cache_page(86400)(sitemaps_views.sitemap),
+        (sitemaps_views.sitemap),
+        {'sitemaps': sitemaps}, name='sitemaps'),
 )
