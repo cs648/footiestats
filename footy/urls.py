@@ -8,14 +8,11 @@ from footy.views import MatchDetailView, TeamDetailView, TeamMatchListView, Team
 from django.views.generic.dates import DayArchiveView, MonthArchiveView, YearArchiveView
 from footy.sitemap import sitemaps
 
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
+
 urlpatterns = patterns('',
-    # Examples:
-    #url(r'^$', 'footy.views.home', name='home'),
-    # url(r'^footy/', include('footy.foo.urls')),
     url(r'^$', IndexView.as_view()),
     url(r'^about$', TemplateView.as_view(template_name="about.html")),
     url(r'^match/(?P<pk>\d+)/$', MatchDetailView.as_view(), name='match_detail'),

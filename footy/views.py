@@ -11,11 +11,6 @@ class MatchDetailView(DetailView):
     context_object_name="match"
     template_name='match_detail.html'
 
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super(MatchDetailView, self).get_context_data(**kwargs)
-        return context
-
 class TeamMatchListView(ListView):
     context_object_name = "teams"
     template_name = 'team_match_list.html'
