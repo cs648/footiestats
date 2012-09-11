@@ -52,9 +52,15 @@ class TeamDetailView(DetailView):
         #context['worst_loss'] = lost.order_by().reverse()[0]
         context['worst_loss'] = None
         context['average_yellows'] = None
-        context['worst_yellows'] = games_this_season.order_by('yellows').reverse()[0]
+        try:
+            context['worst_yellows'] = games_this_season.order_by('yellows').reverse()[0]
+        except IndexError:
+            context['worst_yellows'] = None
         context['average_reds'] = None
-        context['worst_reds'] = games_this_season.order_by('reds').reverse()[0]
+        try:
+            context['worst_reds'] = games_this_season.order_by('reds').reverse()[0]
+        except IndexError:
+            context['worst_reds'] = None
         return context
 
 class TeamListView(ListView):
