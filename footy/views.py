@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from footy.models import MatchStat, Team, TeamMatchStat
+from footy.models import MatchStat, Team, TeamMatchStat, division_dict
 from footy.config import current_season
 from django.views.generic import DetailView, ListView, TemplateView
 from random import randint
@@ -86,4 +86,30 @@ class IndexView(TemplateView):
         match_ids = [randint(0, max_match) for x in xrange(num_matches)]
         context['random_matches'] = MatchStat.objects.in_bulk(match_ids).values()
         return context
+
+class LeagueIndexView(TemplateView):
+    template_name = "league.html"
+    model = Team
+    queryset = Team.objects.all()
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(LeagueIndexView, self).get_context_data(**kwargs)
+        context['divisions'] = division_dict
+        return context
+
+class LeagueListView(ListView):
+    template_name = 'league_list.html'
+    context_object_name = "matches"
+    paginate_by = 25
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(LeagueListView, self).get_context_data(**kwargs)
+        context['name'] = division_dict[self.kwargs['league']]
+        context['divisions'] = division_dict
+        return context
+
+    def get_queryset(self):
+        return MatchStat.objects.filter(division=self.kwargs['league']).order_by('match_date').reverse()
 

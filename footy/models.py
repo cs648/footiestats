@@ -8,6 +8,7 @@ DIVISION_CHOICES = (
     ('E3', 'League Two'),
     ('EC', 'Conference'),
 )
+division_dict = dict(DIVISION_CHOICES)
 
 class Team(models.Model):
     team_id = models.AutoField(primary_key=True)

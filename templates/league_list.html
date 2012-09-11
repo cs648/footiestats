@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}{{ name }} Matches{% endblock %}
+{% block nav %}
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/teams">Team list</a></li>
+                        <li class="active"><a href="/matches">Match list</a></li>
+{% endblock %}
+{% block content %}
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a> <span class="divider">/</span></li>
+                <li class="active">Leagues</li>
+            </ul>
+            <div class="page-header">
+                <h1>{{ name }} Matches</h1>
+            </div>
+
+            <p>
+                {% for item in divisions.iteritems %}
+                    {% url league_list league=item.0 as league_url %}
+                    <a href="{{ league_url }}" class="btn btn-large">{{ item.1 }}</a>
+                {% endfor %}
+            </p>
+
+            <section>
+            <div>
+                {% include "match_list_include_match.html" %}
+            </div>
+            </section>
+
+            {% include "paginator_include.html" %}
+
+{% endblock %}

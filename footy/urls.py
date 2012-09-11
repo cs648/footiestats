@@ -1,7 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import DetailView, ListView, TemplateView
 from footy.models import MatchStat, Team
-from footy.views import MatchDetailView, TeamDetailView, TeamMatchListView, TeamListView, MatchListView, IndexView
+from footy.views import MatchDetailView, TeamDetailView, TeamMatchListView, TeamListView, \
+    MatchListView, IndexView, LeagueIndexView, LeagueListView
 from django.views.generic.dates import DayArchiveView, MonthArchiveView, YearArchiveView
 
 # Uncomment the next two lines to enable the admin:
@@ -37,6 +38,9 @@ urlpatterns = patterns('',
         template_name='match_day_list.html',
         make_object_list=True,
     ), name='match_year_list'),
+
+    url(r'^leagues$', LeagueIndexView.as_view(), name='league_index'),
+    url(r'^league/(?P<league>E[0123C])$', LeagueListView.as_view(), name='league_list'),
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
