@@ -21,7 +21,8 @@
             <h2>Info</h2>
             <div>
                 <ul>
-                    <li>Current League: {{ position.get_division_display }}</li>
+                    {% url league_list league=position.division as league_url %}
+                    <li>Current League: <a href="{{ league_url }}">{{ position.get_division_display }}</a></li>
                 </ul>
             </div>
             </section>

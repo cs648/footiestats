@@ -1,4 +1,5 @@
 from django.contrib.sitemaps import views as sitemaps_views
+from django.views.decorators.cache import cache_page
 from django.conf.urls import patterns, include, url
 from django.views.generic import DetailView, ListView, TemplateView
 from footy.models import MatchStat, Team
