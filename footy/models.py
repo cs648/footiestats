@@ -17,6 +17,10 @@ class Team(models.Model):
     def __unicode__(self):
         return self.team_name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('team_detail', [self.team_id])
+
 class DivisionInfo(models.Model):
     team = models.ForeignKey(Team)
     season = models.DateField()
@@ -97,4 +101,7 @@ class MatchStat(models.Model):
             assert self.fulltime_winner.team_id == 0
             return "drew with"
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('match_detail', [self.match_id])
 
