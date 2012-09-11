@@ -23,19 +23,19 @@ urlpatterns = patterns('',
     url(r'^team/(?P<pk>\d+)/matches$', TeamMatchListView.as_view(), name='team_match_detail'),
     url(r'^matches$', MatchListView.as_view(), name='match_list'),
     url(r'^teams$', TeamListView.as_view(), name='team_list'),
-    url(r'^matches/(?P<year>\d\d\d\d)-(?P<month>\d\d)-(?P<day>\d\d)$', DayArchiveView.as_view(
+    url(r'^matches/(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})$', DayArchiveView.as_view(
         model=MatchStat,
         month_format="%m",
         date_field='match_date',
         template_name='match_day_list.html',
     ), name='match_day_list'),
-    url(r'^matches/(?P<year>\d\d\d\d)-(?P<month>\d\d)$', MonthArchiveView.as_view(
+    url(r'^matches/(?P<year>\d{4})-(?P<month>\d{2})$', MonthArchiveView.as_view(
         model=MatchStat,
         month_format="%m",
         date_field='match_date',
         template_name='match_day_list.html',
     ), name='match_month_list'),
-    url(r'^matches/(?P<year>\d\d\d\d)$', YearArchiveView.as_view(
+    url(r'^matches/(?P<year>\d{4})$', YearArchiveView.as_view(
         model=MatchStat,
         date_field='season',
         template_name='match_day_list.html',
