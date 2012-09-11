@@ -63,7 +63,6 @@ class TeamListView(ListView):
     context_object_name = "teams"
 
 class MatchListView(ListView):
-    # XXX: hack!
     queryset = MatchStat.objects.order_by('match_date').reverse()
     template_name = 'match_list.html'
     context_object_name = "matches"
@@ -75,7 +74,6 @@ class IndexView(TemplateView):
     queryset = Team.objects.all()
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
         context = super(IndexView, self).get_context_data(**kwargs)
 
         num_teams = 5
@@ -86,8 +84,6 @@ class IndexView(TemplateView):
         num_matches = 5
         max_match = MatchStat.objects.all().count()
         match_ids = [randint(0, max_match) for x in xrange(num_matches)]
-        random_matches = MatchStat.objects.in_bulk(match_ids).values()
-        random_tms = [s.teammatchstat_set.all()[0] for s in random_matches]
-        context['random_matches'] = random_tms
+        context['random_matches'] = MatchStat.objects.in_bulk(match_ids).values()
         return context
 
