@@ -53,10 +53,10 @@ match_dict = {'queryset': MatchStat.objects.all()}
 
 sitemaps = {
     'teams': GenericSitemap(team_dict, priority=0.6),
-    'matches': GenericSitemap(match_dict, priority=0.4),
+    #'matches': GenericSitemap(match_dict, priority=0.4),
     'year-match-archive': YearArchiveSitemap,
     'month-match-archive': MonthArchiveSitemap,
-    'day-match-archive': DayArchiveSitemap,
+    #'day-match-archive': DayArchiveSitemap,
     'league': LeagueSitemap,
     'static': StaticSitemap,
 }
