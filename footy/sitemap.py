@@ -18,7 +18,7 @@ class YearArchiveSitemap(Sitemap):
     def items(self):
         return MatchStat.objects.all().dates('season', 'year')
     @models.permalink
-    def loation(self, item):
+    def location(self, item):
         return ('match_year_list', (), {'year': item.year})
 
 
