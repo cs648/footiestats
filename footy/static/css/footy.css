@@ -7,7 +7,7 @@
 }
 
 body {
-    /* background-image: url('/static/img/bkg.jpg'); */
+    background-image: url('/static/img/green.png');
     /* background-repeat: no-repeat; */
 }
 
@@ -37,7 +37,10 @@ html, body {height: 100%;}
 
 .container {
     overflow:auto;
-    padding-bottom: 180px; /* must be same height as the footer */
+    padding-bottom: 230px; /* must be same height as the footer */ /* this still isn't right, check the 404 page */
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: #FFFFFF;
 }
 
 /*Opera Fix*/
