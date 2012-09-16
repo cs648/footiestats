@@ -62,11 +62,11 @@ urlpatterns = patterns('',
 
     # Sitemap
     url(r'^sitemap.xml$',
-        #cache_page(86400)(sitemaps_views.index),
+        cache_page(86400)(sitemaps_views.index),
         (sitemaps_views.index),
         {'sitemaps': sitemaps, 'sitemap_url_name': 'sitemaps'}),
     url(r'^sitemap-(?P<section>.+)\.xml$',
-        #cache_page(86400)(sitemaps_views.sitemap),
+        cache_page(86400)(sitemaps_views.sitemap),
         (sitemaps_views.sitemap),
         {'sitemaps': sitemaps}, name='sitemaps'),
 )
