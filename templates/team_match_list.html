@@ -20,10 +20,10 @@
             <section>
             <div class="team">
                 {% with matches=teams %}
-                {% include "match_list_include_tms.html" %}
+                {% include "includes/match_list_include_tms.html" %}
                 {% endwith %}
             </div>
             </section>
 
-            {% include "paginator_include.html" %}
+            {% include "includes/paginator.html" %}
 {% endblock %}

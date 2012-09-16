@@ -18,10 +18,10 @@
 
             <div class="section">
                 {% with matches=object_list %}
-                {% include "match_list_include_match.html" %}
+                {% include "includes/match_list_include_match.html" %}
                 {% endwith %}
             </div>
 
-            {% include "paginator_include.html" %}
+            {% include "includes/paginator.html" %}
 
 {% endblock %}
