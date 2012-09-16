@@ -57,7 +57,6 @@ class TeamMatchStat(models.Model):
         return tms
         #return tms.team
 
-
 class MatchStat(models.Model):
     class Meta:
         db_table = u'footy_stats'

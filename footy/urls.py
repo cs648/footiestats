@@ -46,6 +46,9 @@ urlpatterns = patterns('',
     ), name='match_year_list'),
     url(r'^match/(?P<pk>\d+)/$', MatchDetailView.as_view(), name='match_detail'),
 
+    # Search
+    url(r'^search/', include('haystack.urls')),
+
     # League
     url(r'^leagues$', LeagueIndexView.as_view(), name='league_index'),
     url(r'^league/(?P<league>E[0123C])$', LeagueListView.as_view(), name='league_list'),

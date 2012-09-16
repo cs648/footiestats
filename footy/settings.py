@@ -1,7 +1,7 @@
 # Django settings for footy project.
 from footy.password import db_passwd
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'haystack',
     'footy',
 )
 
@@ -170,3 +171,7 @@ CACHES = {
         'LOCATION': 'unix:/home/cs648/webapps/footie_stats/memcached.sock',
     }
 }
+
+HAYSTACK_SITECONF = "footy.search_sites"
+HAYSTACK_SEARCH_ENGINE = "xapian"
+HAYSTACK_XAPIAN_PATH = '/home/cs648/webapps/footie_stats/footie_stats/xapian_index'

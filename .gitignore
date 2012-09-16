@@ -1,2 +1,3 @@
 *.pyc
 footy/password.py
+xapian_index
