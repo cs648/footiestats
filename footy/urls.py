@@ -57,6 +57,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
+    # Cache stats
+    url(r'^cache/', include('django_memcached.urls')),
+
     # Sitemap
     url(r'^sitemap.xml$',
         #cache_page(86400)(sitemaps_views.index),
